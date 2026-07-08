@@ -90,71 +90,213 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 800; line-height: 1.04;
   overflow-x: clip;
 }
 
-/* ---------- top brand row decoration (behind the logo) ---------- */
-/* chains of small traditional paper-doll figures, top & bottom of the row */
-.topbar::before,
-.topbar::after {
-  content: '';
-  position: absolute; left: 0; right: 0;
-  height: 20px;
-  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='28'%20height='20'%20viewBox='0%200%2028%2020'%3E%3Cg%20fill='%23ED1C24'%3E%3Crect%20x='0'%20y='8'%20width='28'%20height='2.2'%20rx='1.1'/%3E%3Ccircle%20cx='14'%20cy='4'%20r='2.7'/%3E%3Cpath%20d='M14%206.5%20L9.5%2018%20L18.5%2018%20Z'/%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: repeat-x;
-  background-size: auto 20px;
-  opacity: 0.9;
-  z-index: 1;
-  pointer-events: none;
-}
-.topbar::before { top: 5px; }
-.topbar::after { bottom: 5px; transform: scaleY(-1); }
-
-.topbar-text {
-  position: absolute; left: 24px; right: 24px; top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
-  text-align: right;
-  font-family: 'Paytone One', sans-serif;
-  color: #ED1C24;
-  font-size: clamp(1rem, 3.6vw, 2rem);
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-/* ---------- top bar ---------- */
+/* ============================================================
+   TOP BRAND BANNER — full-bleed "gold-leaf" showpiece
+   Turmeric mesh · gilded ornamental rules · mandala watermark
+   · slow light sweep · live order pill · tappable call CTA
+   ============================================================ */
 .topbar {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 20px;
-  padding: 16px 24px;
-  background-color: #FFEB00;
-  background-image: radial-gradient(rgba(237, 28, 36, 0.16) 1.6px, transparent 1.7px);
-  background-size: 17px 17px;
-  border: 2px solid #ED1C24;
-  border-radius: 14px;
+  width: 100%;
+  margin-bottom: 10px;
   overflow: hidden;
+  isolation: isolate;
+  /* stacked, top→bottom:
+     1–2) ornamental gold-foil rules (maroon → gold → cream → gold → maroon)
+     3–4) warm radial "mesh" highlights for depth
+     5)   base turmeric-gold diagonal                                    */
+  background:
+    linear-gradient(90deg, #7e1414, #d9b24e 26%, #fbeecf 50%, #d9b24e 74%, #7e1414) top / 100% 3px no-repeat,
+    linear-gradient(90deg, #7e1414, #d9b24e 26%, #fbeecf 50%, #d9b24e 74%, #7e1414) bottom / 100% 3px no-repeat,
+    radial-gradient(140% 220% at 8% -70%, #FFF3BC 0%, rgba(255, 243, 188, 0) 55%),
+    radial-gradient(130% 240% at 102% 170%, #E89A0F 0%, rgba(232, 154, 15, 0) 52%),
+    linear-gradient(132deg, #FFE58A 0%, #FBC63A 47%, #F1AA16 100%);
+  box-shadow:
+    inset 0 4px 0 rgba(255, 255, 255, 0.32),
+    inset 0 -4px 10px rgba(122, 77, 16, 0.12),
+    0 16px 40px -22px rgba(122, 77, 16, 0.7);
 }
-/* logo used directly as the wordmark — no border ring,
-   cropped to the text band so the yellow square reads as a banner */
-.brand-logo {
+/* faint lotus-mandala watermark, cropped off the right edge */
+.topbar::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  right: -60px;
+  width: 260px;
+  height: 260px;
+  transform: translateY(-50%);
+  opacity: 0.14;
+  pointer-events: none;
+  background: no-repeat center / contain url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='220'%20height='220'%20viewBox='0%200%20220%20220'%20fill='none'%20stroke='%237e1414'%20stroke-width='1.5'%3E%3Ccircle%20cx='110'%20cy='110'%20r='24'/%3E%3Ccircle%20cx='110'%20cy='110'%20r='46'/%3E%3Ccircle%20cx='110'%20cy='110'%20r='72'/%3E%3Ccircle%20cx='110'%20cy='110'%20r='100'/%3E%3Cg%3E%3Cellipse%20cx='110'%20cy='38'%20rx='11'%20ry='32'/%3E%3Cellipse%20cx='110'%20cy='38'%20rx='11'%20ry='32'%20transform='rotate(30%20110%20110)'/%3E%3Cellipse%20cx='110'%20cy='38'%20rx='11'%20ry='32'%20transform='rotate(60%20110%20110)'/%3E%3Cellipse%20cx='110'%20cy='38'%20rx='11'%20ry='32'%20transform='rotate(90%20110%20110)'/%3E%3Cellipse%20cx='110'%20cy='38'%20rx='11'%20ry='32'%20transform='rotate(120%20110%20110)'/%3E%3Cellipse%20cx='110'%20cy='38'%20rx='11'%20ry='32'%20transform='rotate(150%20110%20110)'/%3E%3C/g%3E%3C/svg%3E");
+}
+/* slow diagonal light sweep — the premium "sheen" */
+.topbar::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 45%;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: translateX(-160%) skewX(-14deg);
+  animation: banner-sheen 7s ease-in-out 1.2s infinite;
+}
+@keyframes banner-sheen {
+  0%   { transform: translateX(-160%) skewX(-14deg); }
+  60%  { transform: translateX(320%) skewX(-14deg); }
+  100% { transform: translateX(320%) skewX(-14deg); }
+}
+
+/* centered content row inside the full-bleed band */
+.topbar-inner {
   position: relative;
   z-index: 2;
-  height: clamp(58px, 8vw, 78px);
-  width: clamp(190px, 30vw, 270px);
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 16px clamp(14px, 4vw, 40px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(14px, 3vw, 32px);
+  flex-wrap: wrap;
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+/* logo used directly as the wordmark, cropped to its text band */
+.brand-logo {
+  height: clamp(54px, 7.5vw, 76px);
+  width: clamp(180px, 28vw, 262px);
   object-fit: cover;
   object-position: center 57%;
-  border-radius: 8px;
+  border-radius: 10px;
   display: block;
+  filter: drop-shadow(0 4px 8px rgba(122, 77, 16, 0.28));
 }
-.topbar-meta {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--ink-soft); font-weight: 600;
+
+/* "Now taking orders" live pill */
+.topbar-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #1f6b34;
+  white-space: nowrap;
 }
-.topbar-meta .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--leaf-500); box-shadow: 0 0 0 3px rgba(47,140,74,0.18); }
+.topbar-live .live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2f8c4a;
+  box-shadow: 0 0 0 0 rgba(47, 140, 74, 0.6);
+  animation: live-pulse 2s ease-out infinite;
+}
+@keyframes live-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(47, 140, 74, 0.55); }
+  70%  { box-shadow: 0 0 0 7px rgba(47, 140, 74, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(47, 140, 74, 0); }
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 24px);
+}
+
+/* elegant serif tagline */
+.topbar-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.12;
+  text-align: right;
+}
+.topbar-tag .tag-lead {
+  font-size: 0.64rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #a9781d;
+}
+.topbar-tag .tag-main {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 1.9vw, 1.5rem);
+  color: #6f4611;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.topbar-tag .tag-main i { font-style: normal; color: var(--kumkum); padding: 0 4px; }
+
+/* tappable "Call to order" button */
+.topbar-call {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 8px 20px 8px 8px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #b52323, #9e1b1b);
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    0 10px 24px -12px rgba(158, 27, 27, 0.9);
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease;
+}
+.topbar-call:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    0 18px 30px -12px rgba(158, 27, 27, 0.95);
+}
+.topbar-call:active { transform: translateY(0); }
+.topbar-call .call-ring {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--gold-foil);
+  transition: transform 0.4s ease;
+}
+.topbar-call:hover .call-ring { transform: rotate(-14deg) scale(1.06); }
+.topbar-call .call-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+.topbar-call .call-hint {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.74);
+  font-weight: 700;
+}
+.topbar-call .call-num {
+  font-size: 1.02rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topbar::after { animation: none; }
+  .topbar-live .live-dot { animation: none; }
+}
 
 /* ---------- hero ---------- */
 .hero {
@@ -965,8 +1107,13 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 800; line-height: 1.04;
 }
 
 /* ---------- mobile tightening ---------- */
-@media (max-width: 560px) {
-  .topbar-text { display: none; }               /* avoid overlapping the logo */
+@media (max-width: 620px) {
+  .topbar-inner { justify-content: center; gap: 12px; padding: 13px 16px; }
+  .topbar-brand { flex-direction: column; gap: 9px; }
+  .topbar-right { width: 100%; justify-content: space-between; }
+  .topbar-tag { align-items: flex-start; text-align: left; }
+  .topbar-tag .tag-lead { letter-spacing: 0.26em; }
+  .topbar::before { right: -110px; opacity: 0.1; }
   .hero { padding: 30px 0 24px; }
   .builder { gap: 20px; }
   .stage { padding: 15px; min-height: auto; }

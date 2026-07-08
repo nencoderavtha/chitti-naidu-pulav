@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Phone } from 'lucide-react';
 import PlateVisualizer from './components/PlateVisualizer';
 import MenuSelector from './components/MenuSelector';
 import OrderSummary from './components/OrderSummary';
@@ -121,12 +121,29 @@ export default function App() {
 
   return (
     <>
-      <div className="app">
-        <header className="topbar rise">
-          <span className="topbar-text">Pulav's · Badam Milk</span>
-          <img className="brand-logo" src={logoImg} alt="Chitti Naidu Pulavs — Pulav's | Badam Milk" />
-        </header>
+      <header className="topbar rise">
+        <div className="topbar-inner">
+          <div className="topbar-brand">
+            <img className="brand-logo" src={logoImg} alt="Chitti Naidu Pulavs — Pulav's | Badam Milk" />
+            <span className="topbar-live"><i className="live-dot" />Now taking orders</span>
+          </div>
+          <div className="topbar-right">
+            <div className="topbar-tag">
+              <span className="tag-lead">Authentic Andhra</span>
+              <span className="tag-main">Pulav <i>·</i> Badam Milk</span>
+            </div>
+            <a className="topbar-call" href="tel:8008800467">
+              <span className="call-ring"><Phone size={15} strokeWidth={2.4} /></span>
+              <span className="call-text">
+                <span className="call-hint">Call to order</span>
+                <span className="call-num">8008800467</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </header>
 
+      <div className="app">
         <section className="hero rise d1">
           <Kolam className="tl" /><Kolam className="tr" />
           <Kolam className="bl" /><Kolam className="br" />
