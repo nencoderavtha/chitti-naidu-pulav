@@ -1063,7 +1063,9 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 800; line-height: 1.04;
 
 /* ---------- floating glass order bar ---------- */
 .orderbar {
-  position: fixed; left: 50%; transform: translateX(-50%);
+  /* Centered via inset + auto margins (not translateX) so the .rise
+     animation's transform doesn't knock the bar off-center. */
+  position: fixed; left: 0; right: 0; margin-inline: auto;
   bottom: max(16px, env(safe-area-inset-bottom));
   width: min(660px, calc(100vw - 24px));
   display: flex; align-items: center; gap: 14px;
